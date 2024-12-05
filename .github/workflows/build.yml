@@ -1,0 +1,69 @@
+name: Build Go Application
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            artifact_name: jt-linux
+          - os: windows-latest
+            artifact_name: jt-windows.exe
+          - os: macos-latest
+            artifact_name: jt-darwin
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+
+      - name: Display Go version
+        run: go version
+
+      - name: Install dependencies
+        run: |
+          go get github.com/joho/godotenv
+          go mod tidy
+
+      - name: Build
+        run: go build -v -o ${{ matrix.artifact_name }} ./cmd/jt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: ${{ matrix.artifact_name }}
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+
+      - name: List files
+        run: ls -R
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            jt-linux/jt-linux
+            jt-windows.exe/jt-windows.exe
+            jt-darwin/jt-darwin
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

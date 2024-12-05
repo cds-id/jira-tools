@@ -1,0 +1,37 @@
+.env
+*.env
+config.json
+branch-config.json
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Debug files
+debug
+debug.test
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work
+jt
+!cmd/jt
