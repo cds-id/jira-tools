@@ -48,26 +48,42 @@ A CLI tool that integrates Jira with Git commits, automatically fetching issue s
 
 ### From Pre-built Binaries
 
-1. Download the appropriate binary for your platform:
+Download the appropriate binary for your platform:
 
-**macOS:**
+**macOS (Intel):**
 ```bash
-curl -LO https://github.com/cds-id/jira-tools/releases/download/v0.0.1/jt-darwin
-chmod +x jt-darwin
-sudo mv jt-darwin /usr/local/bin/jt
+curl -LO "https://github.com/cds-id/jira-tools/releases/latest/download/jt-darwin-amd64"
+chmod +x jt-darwin-amd64
+sudo mv jt-darwin-amd64 /usr/local/bin/jt
 ```
 
-**Linux:**
+**macOS (Apple Silicon):**
 ```bash
-curl -LO https://github.com/cds-id/jira-tools/releases/download/v0.0.1/jt-linux
-chmod +x jt-linux
-sudo mv jt-linux /usr/local/bin/jt
+curl -LO "https://github.com/cds-id/jira-tools/releases/latest/download/jt-darwin-arm64"
+chmod +x jt-darwin-arm64
+sudo mv jt-darwin-arm64 /usr/local/bin/jt
+```
+
+**Linux (x86_64):**
+```bash
+curl -LO "https://github.com/cds-id/jira-tools/releases/latest/download/jt-linux-amd64"
+chmod +x jt-linux-amd64
+sudo mv jt-linux-amd64 /usr/local/bin/jt
+```
+
+**Linux (ARM64):**
+```bash
+curl -LO "https://github.com/cds-id/jira-tools/releases/latest/download/jt-linux-arm64"
+chmod +x jt-linux-arm64
+sudo mv jt-linux-arm64 /usr/local/bin/jt
 ```
 
 **Windows:**
-- Download [jt-windows.exe](https://github.com/cds-id/jira-tools/releases/download/v0.0.1/jt-windows.exe)
-- Rename to `jt.exe`
-- Add to your PATH or move to a directory in your PATH
+```powershell
+# Download jt-windows-amd64.exe
+# Rename to jt.exe
+# Add to PATH or move to a directory in your PATH
+```
 
 ### From Source
 
