@@ -1,8 +1,12 @@
 # Jira Tools - Git Commit Automation
 
+> From Developer to Developer: Streamlining Your Jira-Git Workflow
+
 A CLI tool that integrates Jira with Git commits, automatically fetching issue summaries and creating semantic commit messages with Git Flow support.
 
-## Features
+## Roadmap
+
+### Existing Features
 
 - Fetch Jira issue details directly from the command line
 - Automatically create semantic commit messages with Jira issue information
@@ -11,14 +15,59 @@ A CLI tool that integrates Jira with Git commits, automatically fetching issue s
 - Git Flow branching strategy support
 - Wizard-based configuration setup
 
+### Upcoming Features
+
+- **Developer Assistant**
+  - Smart priority card suggestions
+  - Task prioritization recommendations
+  - Workload optimization
+
+- **Timetracker**
+  - Integrated Jira time logging
+  - Automated work tracking
+  - Time report generation
+
+- **Card Transitions**
+  - Move cards between states
+  - Automated workflow transitions
+  - Custom transition rules
+
+- **Issue Reports**
+  - Remaining issues summary
+  - Sprint progress tracking
+  - Team velocity metrics
+
 ## Prerequisites
 
-- Go 1.16 or higher
+- Go 1.16 or higher (only for building from source)
 - Git installed and configured
 - Jira account with API access
 - Jira API token ([How to generate](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/))
 
 ## Installation
+
+### From Pre-built Binaries
+
+1. Download the appropriate binary for your platform:
+
+**macOS:**
+```bash
+curl -LO https://github.com/cds-id/jira-tools/releases/download/v0.0.1/jt-darwin
+chmod +x jt-darwin
+sudo mv jt-darwin /usr/local/bin/jt
+```
+
+**Linux:**
+```bash
+curl -LO https://github.com/cds-id/jira-tools/releases/download/v0.0.1/jt-linux
+chmod +x jt-linux
+sudo mv jt-linux /usr/local/bin/jt
+```
+
+**Windows:**
+- Download [jt-windows.exe](https://github.com/cds-id/jira-tools/releases/download/v0.0.1/jt-windows.exe)
+- Rename to `jt.exe`
+- Add to your PATH or move to a directory in your PATH
 
 ### From Source
 
