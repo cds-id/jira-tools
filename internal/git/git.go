@@ -16,6 +16,15 @@ const (
     ReleaseBranch BranchType = "release"
 )
 
+func GetProjectRoot() (string, error) {
+    cmd := exec.Command("git", "rev-parse", "--show-toplevel")
+    output, err := cmd.Output()
+    if err != nil {
+        return "", fmt.Errorf("failed to get project root: %v", err)
+    }
+    return strings.TrimSpace(string(output)), nil
+}
+
 func GetAvailableBranches() ([]string, error) {
     cmd := exec.Command("git", "branch", "--format=%(refname:short)")
     output, err := cmd.Output()
@@ -28,9 +37,14 @@ func GetAvailableBranches() ([]string, error) {
 }
 
 func CreateBranch(issueKey, summary string, branchType BranchType) error {
-    branchConfig, err := config.LoadBranchConfig()
+    projectRoot, err := GetProjectRoot()
     if err != nil {
-        return fmt.Errorf("failed to load branch configuration: %v", err)
+        return err
+    }
+
+    branchConfig, err := config.LoadProjectBranchConfig(projectRoot)
+    if err != nil {
+        return fmt.Errorf("failed to load project configuration: %v", err)
     }
 
     // Determine base branch

@@ -35,3 +35,4 @@ vendor/
 go.work
 jt
 !cmd/jt
+.jt-config.json
